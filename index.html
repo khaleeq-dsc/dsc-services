@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>Data Validator</title>
+</head>
+
+<body>
+    <h1>
+        Data Validator
+    </h1>
+    <form method="POST" action="">
+        <textarea name="input">
+
+            </textarea>
+        <input type="submit">
+    </form>
+    <pre id="dataLogs">
+
+        </pre>
+    <script>
+        var apiUrl = 'https://pokeapi.co/api/v2/pokemon/ditto/';
+        fetch(apiUrl).then(response => {
+            return response.json();
+        }).then(data => {
+            // Work with JSON data here
+            console.log(data);
+        }).catch(err => {
+            // Do something for an error here
+        });
+    </script>
+</body>
+
+</html>
