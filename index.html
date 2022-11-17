@@ -8,17 +8,16 @@
     <h1>
         Data Validator
     </h1>
-    <form method="POST" action="">
-        <textarea name="input">
-
-            </textarea>
-        <input type="submit">
+    <form method="POST" action="http://192.168.20.50:3000/data-logs">
+        <h3>Template</h3><textarea name="template" cols="100" rows="12"></textarea>
+        <h3>Data</h3><textarea name="data" cols="100" rows="12"></textarea>
+        <h3><input type="submit" type="button"></h3>
     </form>
     <pre id="dataLogs">
 
         </pre>
     <script>
-        var apiUrl = 'https://pokeapi.co/api/v2/pokemon/ditto/';
+        var apiUrl = 'http://192.168.20.50:3000/data-logs';
         fetch(apiUrl).then(response => {
             return response.json();
         }).then(data => {
