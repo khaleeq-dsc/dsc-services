@@ -2,30 +2,36 @@
 
 <head>
     <title>Data Validator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
     <h1>
         Data Validator
     </h1>
-    <form method="POST" action="http://192.168.20.50:3000/data-logs">
-        <h3>Template</h3><textarea name="template" cols="100" rows="12"></textarea>
-        <h3>Data</h3><textarea name="data" cols="100" rows="12"></textarea>
-        <h3><input type="submit" type="button"></h3>
-    </form>
-    <pre id="dataLogs">
-
-        </pre>
+    <hr>
+    <div style="display: flex">
+        <div style="width: 40%; display: inline-block;">
+            <form method="POST" action="http://192.168.20.50:3000/data-logs">
+                <h3>Template</h3><textarea id="template" name="template" cols="60" rows="12"></textarea>
+                <h3>Data</h3><textarea id="data" name="data" cols="60" rows="12"></textarea>
+                <h3><input onclick="getDataLogs()" type="button" value="Submit"></h3>
+            </form>
+        </div>
+        <div style="width: 40%; display: inline-block;">
+            <h3>Data Logs</h3>
+            <p id="dataLogs"></p>
+        </div>
+    </div>
     <script>
-        var apiUrl = 'http://192.168.20.50:3000/data-logs';
-        fetch(apiUrl).then(response => {
-            return response.json();
-        }).then(data => {
-            // Work with JSON data here
-            console.log(data);
-        }).catch(err => {
-            // Do something for an error here
-        });
+        function getDataLogs() {
+            const template = $('#template').val()
+            const data = $('#data').val()
+
+            $.post('https://dv-hi7k.onrender.com/data-logs', { template,data }, function (response) {
+                $("#dataLogs").text(JSON.stringify(response, null, "\t"));
+            });
+        }
     </script>
 </body>
 
